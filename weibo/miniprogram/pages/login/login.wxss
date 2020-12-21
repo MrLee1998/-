@@ -1,0 +1,14 @@
+.container {
+  padding: 0 40rpx;
+}
+.container .logo-group {
+  margin-top: 100rpx;
+}
+.container .tips {
+  font-size: 32rpx;
+  color: #646464;
+}
+.container button {
+  width: 100%;
+  margin-top: 20rpx;
+}

@@ -1,0 +1,8 @@
+<view class="container">
+  <view class="logo-group">
+    <image class="log0" src=""></image>
+  </view>
+  <view class="tips">授权后才可以使用部分功能</view>
+  <button type="primary" open-type="getUserInfo" bind:getuserinfo="onGetUserInfo">点击授权</button>
+  <button type="default">返回</button>
+</view>
