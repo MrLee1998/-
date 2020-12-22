@@ -23,9 +23,17 @@ Page({
     console.log(e);
     if(app.isLogin) {
       console.log('跳转');
-      wx.navigateTo({
-        // url: '../login/login',
+      wx.showActionSheet({
+        itemList: ['文字', '照片', '视频'],
+        success: res => {
+          console.log(res);
+          const tapIndex = res.tapIndex
+          wx.navigateTo({
+            url: '../weibo/weibo?type=' + tapIndex
+          })
+        }
       })
+    
     } else {
       wx.navigateTo({
         url: '../login/login',

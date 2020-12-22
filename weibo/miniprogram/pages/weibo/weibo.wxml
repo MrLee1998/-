@@ -1,0 +1,13 @@
+<view class="container">
+  <form bindsubmit="submit">
+    <textarea name="content" class="textarea" placeholder="请写点什么···"></textarea>
+    <view class="location-group" bindtap="onLocationTap">
+      <view class="left-group">
+        <image class="icon" src="../../images/location.png"></image>
+        <view class="location-name">{{location? location.name : '所在位置'}}</view>
+      </view>
+      <image class="arrow" src="../../images/jiantou.png"></image>
+    </view>
+    <button form-type="submit" type="primary" class="submitBtn">发表</button>
+  </form>
+</view>
