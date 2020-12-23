@@ -1,10 +1,24 @@
 {
   "pages": [
-   
+    "pages/personal/personal",
     "pages/index/index",
-    "pages/weibo/weibo",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/weibo/weibo"
   ],
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "动态",
+      "iconPath": "./images/active.png",
+      "selectedIconPath": "./images/actived.png"
+    },
+    {
+      "pagePath": "pages/index/index",
+      "text": "个人主页",
+      "iconPath": "./images/my.png",
+      "selectedIconPath": "./images/my-selected.png"
+    }]
+  },
   "permission": {
     "scope.userLocation": {
       "desc": "确定分享所在位置吗？"

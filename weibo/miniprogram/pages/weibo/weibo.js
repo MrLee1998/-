@@ -1,5 +1,6 @@
 // pages/weibo/weibo.js
-const db = wx.cloud.database();
+// const db = wx.cloud.database();
+
 const app = getApp()
 Page({
 
@@ -7,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    location: null
+    location: null,
+    imageSize: '',
+    chooseImages: []
   },
   openLocation() {
     const that = this;
@@ -43,39 +46,74 @@ Page({
     })
   },
   submit(event) {
-    let location = this.data.location.name;
+    let location = this.data.location.name || '';
     let content = event.detail.value.content;
     let author = app.globalData.userInfo;
-    
-    // wx.showLoading({
-    //   title: '正在发表中···',
-    // })
+    let chooseImages = this.data.chooseImages || [];
+    wx.showLoading({
+      title: '正在发表中···',
+    })
     wx.cloud.callFunction({
-      name: 'weibo',
+      name: 'weiboo',
       data: {
         content: content,
         location: location,
-        author: author
+        author: author,
+        chooseImages: chooseImages
       },
-      complete: res => {
-        console.log('callFunction test result: ', res)
-       }
-      // success: res => {
-      //   console.log(res);
-        // const _id = res.result._id;
-        // if(_id) {
-        //   wx.hideLoading();
-        //   wx.showToast({
-        //     title: '发表成功',
-        //   })
-        // } else {
-        //   wx.showToast({
-        //     title: res.result.errMsg,
-        //   })
-        // }
-      // }
+      success: res => {
+        console.log(res);
+        const _id = res.result._id;
+        if(_id) {
+          wx.hideLoading();
+          wx.showToast({
+            title: '发表成功',
+          })
+          wx.navigateTo({
+            url: '../index/index',
+          })
+        } else {
+          wx.showToast({
+            title: res.result.errMsg,
+          })
+        }
+      }
     })
-    console.log(location,content, author);
+  },
+  // 初始化图片大小
+  initImageSize() {
+    const windowWidth = wx.getSystemInfoSync().windowWidth;
+    const containerWidth = windowWidth - 60;
+    const imageSize = (containerWidth -2.5*3) / 3
+    this.setData({
+      imageSize: imageSize
+    })
+  },
+  addImageTap(event){
+    const that = this
+    wx.chooseImage({
+      count: 9,
+      sizeType: ['original'],
+      sourceType: ['album', 'camera'],
+      success: res => {
+        // console.log(res);
+        const chooseImages = res.tempFilePaths
+        const oldImages = that.data.chooseImages
+        const newImages = oldImages.concat(chooseImages)
+        that.setData({
+          chooseImages: newImages
+        })
+      }
+    })
+  },
+  deleteImage(event) {
+    // console.log(event);
+    const index = event.target.dataset.index;
+    const chooseImages = this.data.chooseImages;
+    chooseImages.splice(index, 1);
+    this.setData({
+      chooseImages: chooseImages
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -85,6 +123,7 @@ Page({
     this.setData({
       // type: options.type
     })
+    this.initImageSize()
   },
 
   /**

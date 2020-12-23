@@ -1,9 +1,9 @@
 <view class="container">
-  <view class="weibo-group">
+  <view class="weibo-group" wx:for="{{publishData}}" wx:key="_id">
     <view class="user-group">
-      <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKMFzicy3kz8GQRgeF6ZMVpx2zcSx7axtwYjtJE7oAEUmdibmTBGSlCN1WH6nW82NXq4P0wXrFF1LYw/132"></image>
+      <image class="avatar" src="{{item.author.avatarUrl ? item.author.avatarUrl : ''}}"></image>
       <view class="right-info">
-        <view class="username">lazy</view>
+        <view class="username">{{item.author.nickName}}</view>
         <view class="detail-info">
           <view class="titme">2020/1/11</view>
           <view class="from">来自iphone6</view>
@@ -13,11 +13,11 @@
 
     <view class="weibo-content-group">
       <view class="content">
-        一起到永远吧
+        {{item.content}}
       </view>
-      <view class="image-list-group">
-        <image wx:for="{{images}}" wx:key="index" mode="aspectFill" style="width: {{threeImageSize}}px; height: {{threeImageSize}}px" src="https://c-ssl.duitang.com/uploads/blog/202011/13/20201113135613_263f1.thumb.1000_0.jpg"></image>
-        <view wx:if="{{images.length % 3 == 2}}" style="width: {{threeImageSize}}px; height: {{threeImageSize}}px"></view>
+      <view class="image-list-group" wx:for="{{item.chooseImages}}" wx:key="index">
+        <image mode="aspectFill" style="width: {{ImageSize}}/{{item.chooseImages}}px; height: {{ImageSize}}/{{item.chooseImages}}px;" src="{{item}}"></image>
+        <view wx:if="{{images.length % 3 == 2}}" style="width: {{ImageSize}}/{{item.chooseImages}}px; height: {{ImageSize}}/{{item.chooseImages}}px"></view>
       </view>
       <view class="weibo-handle">
         <view class="comment-group">
@@ -29,7 +29,7 @@
       </view>
     </view>
   </view>
-  <view class="weibo-group">
+  <!-- <view class="weibo-group">
     <view class="user-group">
       <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKMFzicy3kz8GQRgeF6ZMVpx2zcSx7axtwYjtJE7oAEUmdibmTBGSlCN1WH6nW82NXq4P0wXrFF1LYw/132"></image>
       <view class="right-info">
@@ -43,7 +43,7 @@
 
     <view class="weibo-content-group">
       <view class="content">
-        一起到永远吧
+        哈哈哈
       </view>
       <view class="image-list-group">
         <video src="cloud://lizun-9gtuuwmq812c470e.6c69-lizun-9gtuuwmq812c470e-1303973987/Mojito_MV.mp4"></video>
@@ -57,7 +57,7 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
 </view>
 <view class="writeBtn" bindtap="onWriteWeibo">
   <view>+</view>

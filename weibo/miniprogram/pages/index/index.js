@@ -6,17 +6,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    twoImageSize: '',
-    images: [1, 2, 3,4]
+    ImageSize: '',
+    publishData: [],
+    imageNum: []
   },
   inintImageSize() {
-    const windowWidth = wx.getSystemInfoSync().windowWidth;
-    const weiboWidth = windowWidth - 40;
-    const twoImageSize = (weiboWidth - 2.5) / 2;
-    const threeImageSize = (weiboWidth - 2.5) / 3;
+    let windowWidth = wx.getSystemInfoSync().windowWidth;
+    let weiboWidth = windowWidth - 40;
+    let imageSize = (weiboWidth - 2.5);
+    console.log(imageSize);
+    // console.log(this.data.imageNum);
+    // const threeImageSize = (weiboWidth - 2.5) / 3;
     this.setData({
-      twoImageSize: twoImageSize,
-      threeImageSize: threeImageSize
+      imageSize: imageSize,  
     })
   },
   onWriteWeibo(e) {
@@ -40,10 +42,32 @@ Page({
       })
     }
   },
+  getPublishData(event) {
+    const that = this
+    wx.showNavigationBarLoading()
+    wx.cloud.callFunction({
+      name: 'getPublishData',
+      data: {},
+      success(res) {
+        console.log(res.result.data);
+        that.setData({
+          publishData: res.result.data
+        })
+        
+      },
+      fail(err) {
+        console.log(err)
+      },
+      complete() {
+        wx.hideNavigationBarLoading()
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getPublishData()
     this.inintImageSize()
   },
 

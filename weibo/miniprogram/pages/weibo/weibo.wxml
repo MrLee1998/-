@@ -1,6 +1,15 @@
 <view class="container">
   <form bindsubmit="submit">
     <textarea name="content" class="textarea" placeholder="请写点什么···"></textarea>
+    <view class="image-list-group">
+      <view class="image-group" wx:for="{{chooseImages}}" wx:key="item">
+        <image style="width: {{imageSize}}px; height:{{imageSize}}px" src="{{item}}"></image>
+        <view bindtap="deleteImage" class="close-btn" data-index="{{index}}"></view>
+      </view>
+      <view bindtap="addImageTap" class="add-image-btn" style="width: {{imageSize}}px; height:{{imageSize}}px">
+        <view>+</view>
+      </view>
+    </view>
     <view class="location-group" bindtap="onLocationTap">
       <view class="left-group">
         <image class="icon" src="../../images/location.png"></image>
