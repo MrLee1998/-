@@ -6,17 +6,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ImageSize: '',
+    imageSize: '',
     publishData: [],
-    imageNum: []
+    imageNum: ''
   },
   inintImageSize() {
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     let weiboWidth = windowWidth - 40;
-    let imageSize = (weiboWidth - 2.5);
+    let imageSize = weiboWidth ;
     console.log(imageSize);
-    // console.log(this.data.imageNum);
-    // const threeImageSize = (weiboWidth - 2.5) / 3;
     this.setData({
       imageSize: imageSize,  
     })
@@ -26,7 +24,7 @@ Page({
     if(app.isLogin) {
       console.log('跳转');
       wx.showActionSheet({
-        itemList: ['文字', '照片', '视频'],
+        itemList: ['文字', '视频'],
         success: res => {
           console.log(res);
           const tapIndex = res.tapIndex
@@ -51,7 +49,8 @@ Page({
       success(res) {
         console.log(res.result.data);
         that.setData({
-          publishData: res.result.data
+          publishData: res.result.data,
+          
         })
         
       },

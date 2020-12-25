@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="userInfo-group">
+    <view class="left-group">
+      <image src="{{info.avatarUrl}}"></image>
+      <view class="userInfo">
+        <view class="userInfo-nickName">{{info.nickName}}</view>
+        <view class="sex">{{info.gender == 1 ? '男' : '女'}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="tips">去编辑完善下个人简介吧</view>
+  <view class="edit-content">
+    <view class="edit">111</view>
+    <view class="edit-icon">
+      <text>编辑资料</text>
+      <image src="../../images/setting.png"></image>
+    </view>
+  </view>
+  <!-- <view class="userInfo-content">
+    <view class="content-detail">
+      <view class="note">笔记</view>
+      <view class="like">收藏</view>
+      <view class="choose">赞过</view>
+    </view>
+  </view> -->
+</view>

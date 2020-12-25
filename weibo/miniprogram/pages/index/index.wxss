@@ -36,17 +36,26 @@
 .detail-info .time {
   margin-right: 20rpx;
 }
+.detail-info .from {
+  padding-right: 20rpx;
+}
 .weibo-content-group {
   padding-top: 30rpx;
 }
 .weibo-content-group .content {
   font-size: 32rpx;
+  background: #f0f0f0;
+  padding: 10rpx 0;
+  border-radius: 5rpx;
 }
 .weibo-content-group .image-list-group {
   padding-top: 20rpx;
   display: flex;
-  justify-content: space-between;
+  flex-direction: row;
+  justify-content: space-between; 
   flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
 }
 .image-list-group image {
   margin-bottom: 5rpx;
@@ -58,6 +67,11 @@
   display: flex;
   padding-top: 30rpx;
   font-size: 24rpx;
+}
+.location image {
+  padding-top: 20rpx;
+  width: 40rpx;
+  height: 40rpx;
 }
 .weibo-handle image {
   width: 40rpx;

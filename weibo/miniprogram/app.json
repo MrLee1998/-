@@ -1,7 +1,9 @@
 {
-  "pages": [
-    "pages/personal/personal",
+  "pages": [ 
+    "pages/comment/comment",
     "pages/index/index",
+    "pages/personal/personal",
+   
     "pages/login/login",
     "pages/weibo/weibo"
   ],
@@ -13,7 +15,7 @@
       "selectedIconPath": "./images/actived.png"
     },
     {
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/personal/personal",
       "text": "个人主页",
       "iconPath": "./images/my.png",
       "selectedIconPath": "./images/my-selected.png"

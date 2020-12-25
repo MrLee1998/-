@@ -5,7 +5,7 @@
       <view class="right-info">
         <view class="username">{{item.author.nickName}}</view>
         <view class="detail-info">
-          <view class="titme">2020/1/11</view>
+          <view class="time">{{item.currentTime}}</view>
           <view class="from">来自iphone6</view>
         </view>
       </view>
@@ -15,12 +15,27 @@
       <view class="content">
         {{item.content}}
       </view>
-      <view class="image-list-group" wx:for="{{item.chooseImages}}" wx:key="index">
-        <image mode="aspectFill" style="width: {{ImageSize}}/{{item.chooseImages}}px; height: {{ImageSize}}/{{item.chooseImages}}px;" src="{{item}}"></image>
-        <view wx:if="{{images.length % 3 == 2}}" style="width: {{ImageSize}}/{{item.chooseImages}}px; height: {{ImageSize}}/{{item.chooseImages}}px"></view>
+      <view class="image-list-group">
+        <view class="image-content" wx:for="{{item.chooseImages}}" wx:for-item="item1"wx:for-index="index1" wx:key="index1">
+          <image  wx:if="{{item.imageNum > 3}}"
+          style="width: {{(imageSize - 2.5 * 3) / 3}}px; height: {{(imageSize - 2.5 * 3) / 3}}px"
+          src="{{item1}}"></image>
+          <image wx:elif="{{item.imageNum <= 3}}"
+          style="width: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px; height: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px"
+          src="{{item1}}"></image>
+        </view>
+        <!-- <view wx:elif="{{item.imageNum <= 3}}" class="image-content" wx:for="{{item.chooseImages}}" wx:for-item="item1"wx:for-index="index1" wx:key="index1">
+          <image
+          style="width: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px; height: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px"
+          src="{{item1}}"></image>
+        </view> -->
+      </view>
+      <view class="location">
+        <image src="../../images/location.png"></image>
+        {{item.location}}
       </view>
       <view class="weibo-handle">
-        <view class="comment-group">
+        <view class="comment-group" bindtap="comment">
           <image src="../../images/comment.png"></image>评论
         </view>
         <view class="praise-group">
@@ -28,6 +43,7 @@
         </view>
       </view>
     </view>
+    
   </view>
   <!-- <view class="weibo-group">
     <view class="user-group">

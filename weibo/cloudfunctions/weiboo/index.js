@@ -10,12 +10,16 @@ exports.main = async (event, context) => {
   let author = event.author;
   let location = event.location;
   let chooseImages = event.chooseImages
+  let imageNum = event.imageNum
+  let currentTime = event.currentTime
   return await db.collection('publishData').add({
     data: {
       content: content,
       location: location,
       author: author,
-      chooseImages: chooseImages
+      chooseImages: chooseImages,
+      imageNum: imageNum,
+      currentTime: currentTime
     }
   })
 }

@@ -1,6 +1,5 @@
 // pages/weibo/weibo.js
 // const db = wx.cloud.database();
-
 const app = getApp()
 Page({
 
@@ -10,7 +9,8 @@ Page({
   data: {
     location: null,
     imageSize: '',
-    chooseImages: []
+    chooseImages: [],
+    imageNum: 0
   },
   openLocation() {
     const that = this;
@@ -50,6 +50,10 @@ Page({
     let content = event.detail.value.content;
     let author = app.globalData.userInfo;
     let chooseImages = this.data.chooseImages || [];
+    let imageNums = Array.from(this.data.chooseImages).length
+    let time = new Date()
+    let currentTime =` ${time.getFullYear()}/${time.getMonth()}/${time.getDay()}  ${time.getHours()}:${time.getMinutes()}`
+    console.log(imageNums);
     wx.showLoading({
       title: '正在发表中···',
     })
@@ -59,7 +63,9 @@ Page({
         content: content,
         location: location,
         author: author,
-        chooseImages: chooseImages
+        chooseImages: chooseImages,
+        imageNum: imageNums,
+        currentTime: currentTime
       },
       success: res => {
         console.log(res);
@@ -69,7 +75,7 @@ Page({
           wx.showToast({
             title: '发表成功',
           })
-          wx.navigateTo({
+          wx.switchTab({
             url: '../index/index',
           })
         } else {

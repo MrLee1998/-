@@ -1,31 +1,18 @@
-// pages/personal/personal.js
-const app = getApp()
+// pages/comment/comment.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info: []
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData.userInfo);
-    wx.getUserInfo({
-      success: res => {
-        // console.log(res);
-        let info = res.userInfo
-        this.setData({
-          info: info
-        })
-        console.log(this.data.info);
-      }
-     
-    })
-    
+
   },
 
   /**
