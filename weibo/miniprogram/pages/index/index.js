@@ -16,6 +16,21 @@ Page({
       isActive: !this.data.isActive
     })
   },
+  onPraise(event) {
+    const that = this
+  },
+  onImageTap(event){
+    console.log(event);
+    const that = this
+    const pub = event.target.dataset.pub
+    const img = event.target.dataset.img
+    let imageUrl = that.data.publishData[pub].chooseImages
+    let current = that.data.publishData[pub].chooseImages[img]
+    wx.previewImage({
+      urls: imageUrl,
+      current: current
+    })
+  },
   inintImageSize() {
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     let weiboWidth = windowWidth - 40;
@@ -55,10 +70,8 @@ Page({
       success(res) {
         console.log(res.result.data);
         that.setData({
-          publishData: res.result.data,
-          
-        })
-        
+          publishData: res.result.data,   
+        })  
       },
       fail(err) {
         console.log(err)
@@ -72,7 +85,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getPublishData()
+   
     this.inintImageSize()
   },
 
@@ -87,7 +100,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getPublishData()
   },
 
   /**

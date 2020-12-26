@@ -68,6 +68,9 @@
   padding-top: 30rpx;
   font-size: 24rpx;
 }
+.location {
+  font-size: 26rpx;
+}
 .location image {
   padding-top: 20rpx;
   width: 40rpx;

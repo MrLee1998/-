@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    location: null,
+    location: '',
     imageSize: '',
     chooseImages: [],
     imageNum: 0,
@@ -57,6 +57,7 @@ Page({
     let currentTime =` ${time.getFullYear()}/${time.getMonth()}/${time.getDay()}  ${time.getHours()}:${time.getMinutes()}`
     let chooseVideo = this.data.chooseVideo || []
     let type = this.data.type
+    let device = wx.getSystemInfoSync().model
     wx.showLoading({
       title: '正在发表中···',
     })
@@ -70,7 +71,8 @@ Page({
         imageNum: imageNums,
         currentTime: currentTime,
         chooseVideo: chooseVideo,
-        type: type
+        type: type,
+        device: device
       },
       success: res => {
         console.log(res);
@@ -129,8 +131,15 @@ Page({
     }
     
   },
-  addVideo(){
-   
+  onImageTap(event){
+    console.log(event);
+    const that = this
+    const index = event.target.dataset.index
+    let current = that.data.chooseImages[index]
+    wx.previewImage({
+      urls: that.data.chooseImages,
+      current: current
+    })
   },
   deleteImage(event) {
     // console.log(event);
@@ -148,7 +157,7 @@ Page({
     this.setData({
       type: options.type
     })
-    console.log(this.data.type);
+    // console.log(this.data.type);
     console.log();
     this.initImageSize()
   },

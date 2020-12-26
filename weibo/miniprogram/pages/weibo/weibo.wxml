@@ -3,7 +3,7 @@
     <textarea name="content" class="textarea" placeholder="请写点什么···"></textarea>
     <view class="image-list-group" wx:if="{{type == 0}}">
       <view class="image-group" wx:for="{{chooseImages}}" wx:key="item">
-        <image style="width: {{imageSize}}px; height:{{imageSize}}px" src="{{item}}"></image>
+        <image bindtap="onImageTap" data-index="{{index}}" style="width: {{imageSize}}px; height:{{imageSize}}px" src="{{item}}"></image>
         <view bindtap="deleteImage" class="close-btn" data-index="{{index}}"></view>
       </view>
       <view  wx:if="{{chooseImages.length < 9}}" bindtap="addImageTap" class="add-image-btn" style="width: {{imageSize}}px; height:{{imageSize}}px">

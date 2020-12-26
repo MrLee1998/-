@@ -8,7 +8,11 @@ Page({
   data: {
     info: []
   },
-
+  toLogin() {
+    wx.navigateTo({
+      url: '../../pages/login/login.wxml',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -16,7 +20,7 @@ Page({
     // console.log(app.globalData.userInfo);
     wx.getUserInfo({
       success: res => {
-        // console.log(res);
+        console.log(res.cloudID);
         let info = res.userInfo
         this.setData({
           info: info
