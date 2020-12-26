@@ -1,0 +1,9 @@
+.container {
+  padding: 40rpx 60rpx;
+}
+.container .textarea {
+  font-size: 28rpx;
+  width: 100%;
+}
+.submitBtn {
+}

@@ -10,7 +10,9 @@ Page({
     location: null,
     imageSize: '',
     chooseImages: [],
-    imageNum: 0
+    imageNum: 0,
+    type: '',
+    chooseVideo: []
   },
   openLocation() {
     const that = this;
@@ -47,13 +49,14 @@ Page({
   },
   submit(event) {
     let location = this.data.location.name || '';
-    let content = event.detail.value.content;
+    let content = event.detail.value.content || '';
     let author = app.globalData.userInfo;
     let chooseImages = this.data.chooseImages || [];
     let imageNums = Array.from(this.data.chooseImages).length
     let time = new Date()
     let currentTime =` ${time.getFullYear()}/${time.getMonth()}/${time.getDay()}  ${time.getHours()}:${time.getMinutes()}`
-    console.log(imageNums);
+    let chooseVideo = this.data.chooseVideo || []
+    let type = this.data.type
     wx.showLoading({
       title: '正在发表中···',
     })
@@ -65,7 +68,9 @@ Page({
         author: author,
         chooseImages: chooseImages,
         imageNum: imageNums,
-        currentTime: currentTime
+        currentTime: currentTime,
+        chooseVideo: chooseVideo,
+        type: type
       },
       success: res => {
         console.log(res);
@@ -97,20 +102,35 @@ Page({
   },
   addImageTap(event){
     const that = this
-    wx.chooseImage({
-      count: 9,
-      sizeType: ['original'],
-      sourceType: ['album', 'camera'],
-      success: res => {
-        // console.log(res);
-        const chooseImages = res.tempFilePaths
-        const oldImages = that.data.chooseImages
-        const newImages = oldImages.concat(chooseImages)
-        that.setData({
-          chooseImages: newImages
-        })
-      }
-    })
+    if(this.data.type == 0) {
+      wx.chooseImage({
+        count: 9,
+        sizeType: ['original'],
+        sourceType: ['album', 'camera'],
+        success: res => {
+          // console.log(res);
+          const chooseImages = res.tempFilePaths
+          const oldImages = that.data.chooseImages
+          const newImages = oldImages.concat(chooseImages)
+          that.setData({
+            chooseImages: newImages
+          })
+        }
+      })
+    } else {
+      wx.chooseVideo({
+        success: res => {
+          console.log(res);
+          this.setData({
+            chooseVideo: res.tempFilePath
+          })
+        }
+      })
+    }
+    
+  },
+  addVideo(){
+   
   },
   deleteImage(event) {
     // console.log(event);
@@ -125,10 +145,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(options);
     this.setData({
-      // type: options.type
+      type: options.type
     })
+    console.log(this.data.type);
+    console.log();
     this.initImageSize()
   },
 

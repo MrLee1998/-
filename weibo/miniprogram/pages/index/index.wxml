@@ -24,11 +24,9 @@
           style="width: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px; height: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px"
           src="{{item1}}"></image>
         </view>
-        <!-- <view wx:elif="{{item.imageNum <= 3}}" class="image-content" wx:for="{{item.chooseImages}}" wx:for-item="item1"wx:for-index="index1" wx:key="index1">
-          <image
-          style="width: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px; height: {{(imageSize - 2.5 * item.imageNum) / item.imageNum}}px"
-          src="{{item1}}"></image>
-        </view> -->
+      </view>
+      <view class="video-list">
+        <video wx:if="{{item.type == 1}}" src="{{item.chooseVideo}}"></video>
       </view>
       <view class="location">
         <image src="../../images/location.png"></image>
@@ -43,37 +41,11 @@
         </view>
       </view>
     </view>
-    
+    <view class="comment-list">
+      <view class="username">{{item.author.nickName}}: {{item.content}}</view>
+    </view>
+    <comment wx:if="{{isActive === true}}"></comment>
   </view>
-  <!-- <view class="weibo-group">
-    <view class="user-group">
-      <image class="avatar" src="https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKMFzicy3kz8GQRgeF6ZMVpx2zcSx7axtwYjtJE7oAEUmdibmTBGSlCN1WH6nW82NXq4P0wXrFF1LYw/132"></image>
-      <view class="right-info">
-        <view class="username">lazy</view>
-        <view class="detail-info">
-          <view class="titme">2020/1/11</view>
-          <view class="from">来自iphone</view>
-        </view>
-      </view>
-    </view>
-
-    <view class="weibo-content-group">
-      <view class="content">
-        哈哈哈
-      </view>
-      <view class="image-list-group">
-        <video src="cloud://lizun-9gtuuwmq812c470e.6c69-lizun-9gtuuwmq812c470e-1303973987/Mojito_MV.mp4"></video>
-      </view>
-      <view class="weibo-handle">
-        <view class="comment-group">
-          <image src="../../images/comment.png"></image>评论
-        </view>
-        <view class="praise-group">
-          <image src="../../images/like.png"></image>赞
-        </view>
-      </view>
-    </view>
-  </view> -->
 </view>
 <view class="writeBtn" bindtap="onWriteWeibo">
   <view>+</view>

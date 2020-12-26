@@ -8,7 +8,13 @@ Page({
   data: {
     imageSize: '',
     publishData: [],
-    imageNum: ''
+    imageNum: '',
+    isActive: false
+  },
+  comment() {
+    this.setData({
+      isActive: !this.data.isActive
+    })
   },
   inintImageSize() {
     let windowWidth = wx.getSystemInfoSync().windowWidth;
@@ -24,7 +30,7 @@ Page({
     if(app.isLogin) {
       console.log('跳转');
       wx.showActionSheet({
-        itemList: ['文字', '视频'],
+        itemList: ['图片', '视频'],
         success: res => {
           console.log(res);
           const tapIndex = res.tapIndex

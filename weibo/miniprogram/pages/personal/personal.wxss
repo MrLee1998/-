@@ -1,62 +1,41 @@
-.container {
-  padding: 0 20rpx;
+.personalContainer {
+  width: 100%;
+  height: 100%;
+
 }
-.userInfo-group {
-  display: flex;
-  padding: 40rpx 20rpx; 
-  background-color: #f0f0f0;
+.personalContainer .user-section {
+  height: 520rpx;
+  position: relative;
+  padding: 100rpx 30rpx 0;
 }
-.userInfo-group .left-group  {
-  display: flex;
-  flex: 1;
+.user-section .bg {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+  filter: blur(1px);
 }
-.left-group .userInfo {
-  padding-left: 20rpx;
-  font-size: 25rpx;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+
+
+.user-info-box{
+  height: 180rpx;
+  display:flex;
+  align-items:center;
+  position:relative;
+  z-index: 1;
+
 }
-.userInfo-group .left-group image{
-  width: 120rpx;
-  height: 120rpx;
+
+.user-info-box .portrait{
+  width: 130rpx;
+  height: 130rpx;
+  border:5rpx solid #fff;
   border-radius: 50%;
 }
-.userInfo-group .right-group {
-  right: 20rpx;
-  top: 20rpx;
+.user-info-box .username{
+  font-size: 24;
+  color: #303133;
+  margin-left: 20rpx;
 }
-.container .edit-content {
-  display: flex;
-  justify-content: space-between;
-}
-.container .edit-content text {
-  font-size: 30rpx;
-  font-weight: bold;
-}
-.container .edit-content image{
-  padding-left: 10rpx;
-  width: 50rpx;
-  height: 50rpx;
-}
-.userInfo-content {
-  background-color: #a89f9f;
-  padding: 40rpx 20rpx;
-  font-size: 30rpx;
-  color: #000;
-  text-align: center;
-  border-radius: 5rpx;
-}
-.content-detail {
-  display: flex;
- 
-} 
-/* .content-detail .note{
-  flex: 1;
-}
-.content-detail .like{
-  flex: 1;
-}
-.content-detail .choose{
-  flex: 1;
-} */
