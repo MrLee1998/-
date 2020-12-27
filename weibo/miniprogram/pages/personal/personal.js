@@ -10,25 +10,27 @@ Page({
   },
   toLogin() {
     wx.navigateTo({
-      url: '../../pages/login/login.wxml',
+      url: '../../pages/login/login',
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // console.log(app.globalData.userInfo);
-    wx.getUserInfo({
-      success: res => {
-        console.log(res.cloudID);
-        let info = res.userInfo
-        this.setData({
-          info: info
-        })
-        console.log(this.data.info);
-      }
-     
+    console.log(app.globalData.userInfo);
+    this.setData({
+      info: app.globalData.userInfo
     })
+    // wx.getUserInfo({
+    //   success: res => {
+    //     console.log(res.cloudID);
+    //     let info = res.userInfo
+    //     this.setData({
+    //       info: info
+    //     })
+    //     console.log(this.data.info);
+    //   }
+    // })
     
   },
 

@@ -9,15 +9,32 @@ Page({
     imageSize: '',
     publishData: [],
     imageNum: '',
-    isActive: false
+    isActive: false,
+    praiseUser: [],
+    mask: false,
+    commentData: []
   },
-  comment() {
+  comment(event) {
     this.setData({
       isActive: !this.data.isActive
     })
   },
   onPraise(event) {
     const that = this
+    const publishDataIndex = event.currentTarget.dataset.praise
+    const praiseObj = that.data.publishData[publishDataIndex]
+    let praiseUser = praiseObj.author.openid
+    let pariseId = praiseObj._id
+    wx.cloud.callFunction({
+      name: 'praise',
+      data: {
+        pariseId: pariseId,
+        praiseUser: praiseUser
+      },
+      success: res => {
+        console.log(res);
+      }
+    })
   },
   onImageTap(event){
     console.log(event);
@@ -35,7 +52,7 @@ Page({
     let windowWidth = wx.getSystemInfoSync().windowWidth;
     let weiboWidth = windowWidth - 40;
     let imageSize = weiboWidth ;
-    console.log(imageSize);
+    // console.log(imageSize);
     this.setData({
       imageSize: imageSize,  
     })
@@ -68,9 +85,9 @@ Page({
       name: 'getPublishData',
       data: {},
       success(res) {
-        console.log(res.result.data);
+        console.log(res.result.data);    
         that.setData({
-          publishData: res.result.data,   
+          publishData: res.result.data
         })  
       },
       fail(err) {
@@ -78,6 +95,41 @@ Page({
       },
       complete() {
         wx.hideNavigationBarLoading()
+      }
+    })
+  },
+  onFocus(event) {
+    this.setData({
+      mask: true
+    })
+  },
+  onBlur(event) {
+    this.setData({
+      mask: false
+    })
+  },
+  onConfirm(event){
+    const content = event.detail.value 
+    console.log(event);
+    const that = this
+    const publishDataIndex = event.currentTarget.dataset.comment
+    const praiseObj = that.data.publishData[publishDataIndex]
+    let commentUser = praiseObj.author.nickName
+    let pariseId = praiseObj._id
+    let commentData = praiseObj.comment
+    console.log(content, pariseId, commentUser);
+    wx.cloud.callFunction({
+      name: 'comment',
+      data: {
+        content: content,
+        pariseId: pariseId,
+        commentUser: commentUser
+      },
+      success: res => {
+        console.log(res);
+        this.setData({
+          commentData: commentData
+        })
       }
     })
   },

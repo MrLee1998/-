@@ -6,6 +6,6 @@ const db = cloud.database({ env })
 
 // 云函数入口函数
 exports.main = async (event, context) => {
-  let result =  await db.collection('publishData').get()
+  let result =  await db.collection('publishData').orderBy("currentTime", "desc").get()
   return result
 }

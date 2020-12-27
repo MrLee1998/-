@@ -8,15 +8,12 @@ const _ = db.command
 // 云函数入口函数
 exports.main = async (event, context) => {
   // const publishDataIndex = event.publishDataIndex
-  const commentUser = event.commentUser
+  const praiseUser = event.praiseUser
   const pariseId = event.pariseId
-  const content = event.content
+  console.log(praiseUser);
   return await db.collection('publishData').doc(pariseId).update({
     data: {
-      comment: _.push({
-        commentUser,
-        content
-      })
+      praiseUser: _.push(praiseUser)
     }
   })
 }

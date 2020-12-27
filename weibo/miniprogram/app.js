@@ -31,6 +31,14 @@ App({
             }
           })
         }
+        wx.cloud.callFunction({
+          name: 'login',
+          success: res => {
+            console.log(res.result.openid);
+            const openid = res.result.openid
+            this.globalData.userInfo.openid = openid
+          }
+        })
       }
     })
   },

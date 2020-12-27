@@ -35,17 +35,20 @@
         <view class="comment-group" bindtap="comment">
           <image src="../../images/comment.png"></image>评论
         </view>
-        <view class="praise-group" bindtap="onPraise">
-          <image src="../../images/like.png"></image>赞
+        <view class="praise-group" bindtap="onPraise" data-praise="{{index}}">
+          <image src="{{item.praiseUser.length > 0 ? '../../images/liked.png' : '../../images/like.png'}}"></image>{{item.praiseUser.length ? item.praiseUser.length : '赞'}}
         </view>
       </view>
     </view>
-    <view class="comment-list">
-      <view class="username">{{item.author.nickName}}: {{item.content}}</view>
+    <view class="comment-list" wx:for="{{item.comment}}" wx:for-item="commentCon" wx:key="index">
+      <view class="username">{{commentCon.commentUser}}: {{commentCon.content}}</view>
     </view>
-    <comment wx:if="{{isActive === true}}"></comment>
+    <view wx:if="{{isActive == true}}" class="comment-input-list">
+        <input class="comment-input" type="text" placeholder="说点什么呢" cursor-spacing="20" bindfocus="onFocus" bindblur="onBlur" bindconfirm="onConfirm"  data-comment="2"></input><button class="commentBtn">发送</button>
+    </view>
   </view>
 </view>
+<view class="mask" wx:if="{{mask}}"></view>
 <view class="writeBtn" bindtap="onWriteWeibo">
   <view>+</view>
 </view>

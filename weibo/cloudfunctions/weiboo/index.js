@@ -12,6 +12,9 @@ exports.main = async (event, context) => {
   let chooseImages = event.chooseImages
   let imageNum = event.imageNum
   let currentTime = event.currentTime
+  let chooseVideo = event.chooseVideo
+  let type = event.type
+  let device = event.device
   return await db.collection('publishData').add({
     data: {
       content: content,
@@ -19,7 +22,10 @@ exports.main = async (event, context) => {
       author: author,
       chooseImages: chooseImages,
       imageNum: imageNum,
-      currentTime: currentTime
+      currentTime: currentTime,
+      chooseVideo: chooseVideo,
+      type: type,
+      device: device
     }
   })
 }
