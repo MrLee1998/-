@@ -1,6 +1,0 @@
-<view class="container">
-  <form bindsubmit="submit">
-    <textarea name="content" class="textarea" placeholder="请写点什么···"></textarea>
-    <button form-type="submit" class="submitBtn">发送</button>
-  </form>
-</view>
