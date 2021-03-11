@@ -1,6 +1,10 @@
 <view class="user-container">
   <view wx:if="{{userInfo.openid}}">
-    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="thunb">
+    <image class="back" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+    <image class="img" src="{{userInfo.avatarUrl}}" mode="aspectFit"></image>
+  </view>
+    <!-- <image class="avatar" src="{{userInfo.avatarUrl}}"></image> -->
     <view>{{userInfo.nickName}}</view>
   </view>
   <view wx:else>
@@ -10,7 +14,53 @@
     </view>
   </view>
   <view>
-    <button wx:if="{{userInfo.openid}}" type="warn" bindtap="scanCode">添加图书</button>
-    <button type="warn" open-type="contact">客服</button>
+    <button class="at-button" wx:if="{{userInfo.openid}}" type="primary" bindtap="scanCode">添加图书</button>
+    <!-- <button class="contact" type="default" open-type="contact">客服</button> -->
+  </view>
+</view>
+<!--收藏-->
+<view class='function'>
+  <view style="width:100%">
+    <view class="functioninformation"><!--左边图片&文字-->
+      <view class="left-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/collect.png"></image>
+      </view>
+      <view class="text">收藏</view><!--文字-->
+      <view class="right-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/箭头.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!--间隔白横线-->
+<view class="whitedivide"></view>
+<!--表情-->
+<view class='function'>
+  <view style="width:100%">
+    <view class="functioninformation"><!--左边图片&文字-->
+      <view class="left-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/about.png"></image>
+      </view>
+      <view class="text">关于</view><!--文字-->
+      <view class="right-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/箭头.png"></image>
+      </view>
+    </view>
+  </view>
+</view>
+<!--间隔灰横条-->
+<view class="graydivide"></view>
+<!--设置-->
+<view class='function'>
+  <view style="width:100%">
+    <view class="functioninformation"><!--左边图片&文字-->
+      <view class="left-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/setting.png"></image>
+      </view>
+      <view class="text">设置</view><!--文字-->
+      <view class="right-icon"><!--图片-->
+        <image class="icon-picture" src="../../images/箭头.png"></image>
+      </view>
+    </view>
   </view>
 </view>

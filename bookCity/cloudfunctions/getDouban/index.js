@@ -27,12 +27,23 @@ async function getDouban(isbn) {
   const $ = cheerio.load(detailPage.data)
   const info = $('#info').text().split('\n').map(v => v.trim()).filter(v => v)
   let author = info[1]
+  let publish = info[4]
+  let infoDetail = info
   let tags = []
   $('#db-tags-section a.tag').each((i, v) => {
     tags.push({
       title: $(v).text()
     })
   })
+  let comments = []
+  $('#comment-list-wrapper .comment').each((i, v) => {
+    comments.push({
+      author: $(v).find('.comment-info a').text(),
+      content: $(v).find('.comment-content').text(),
+      date: $(v).find('.comment-time').text(),
+    })
+  })
+  console.log(comments);
   const ret = {
     create_time: new Date().getTime(),
     title: detailInfo.title,
@@ -41,7 +52,10 @@ async function getDouban(isbn) {
     url: detailInfo.url,
     summary: $('#link-report .intro').text(),
     tags,
-    author
+    author,
+    comments,
+    infoDetail,
+    publish
   }
   // console.log(ret);
   return ret

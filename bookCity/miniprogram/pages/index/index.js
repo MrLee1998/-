@@ -4,13 +4,39 @@ const db = wx.cloud.database()
 Page({
   data: {
    books: [],
-   page: 0
+   page: 0,
+   swiperData: []
+  },
+  getSwiperItem() {
+    let swiperData = []
+    db.collection('doubanbooks').get().then(res => {
+      console.log(res.data);
+      res.data.forEach((item, index) => {
+        if(item.count) {
+          swiperData.push(item)
+        }
+        this.setData({
+          swiperData: swiperData
+        })
+      })
+    })
+    // console.log(swiperData);
+  },
+  goToDetail(e) {
+    console.log(e.currentTarget.dataset.id);
+    let id = e.currentTarget.dataset.id._id
+    wx.navigateTo({
+      url: `../detail/detail?id=${id}`
+    })
+    // wx.navigateTo({
+    //   url: 'pages/detail/detail?id=1'
+    // })
   },
   onPullDownRefresh() {
     this.getList(true)
   },
   onReachBottom() {
-    console.log('触底了, 加载下一页');
+    // console.log('触底了, 加载下一页');
     this.setData({
       page: this.data.page + 1
     }, () => {
@@ -32,7 +58,13 @@ Page({
       ret = ret.skip(offset)
     }
     ret = ret.limit(PAGE).get().then(res => {
-      // console.log(res);
+      console.log(res);
+      res.data.map((book, index) => {
+        let rate = Math.round(book.rate/ 2)
+        let rateVal = '★★★★★☆☆☆☆☆'.slice(5 - rate, 10 - rate)
+        // console.log(rateVal, 1);
+        res.data[index] = {...res.data[index], rateVal}
+      })
       if(init) {
         this.setData({
           books: res.data
@@ -49,6 +81,7 @@ Page({
   },
   onLoad: function() {
     this.getList(true)
+    this.getSwiperItem()
   },
 
   getUserProfile() {

@@ -25,22 +25,23 @@ Page({
     })
   },
   scanCode() {
-    this.addBook()
+    // this.addBook('9787559640727')
     wx.scanCode({
       success: res => {
         //  图书编码
         console.log(res.result);
+        this.addBook(res.result)
       },
       fail: err => {
         console.log(err);
       }
     })
   },
-  addBook() {
+  addBook(isbn) {
     wx.cloud.callFunction({
       name: 'getDouban',
       data: {
-        isbn: '9787115385734'
+        isbn: isbn
       },
       success: res => {
         console.log(res);

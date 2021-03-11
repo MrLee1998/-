@@ -1,6 +1,32 @@
 <view class="container">
-  <view wx:for="{{books}}" class="book-info">
-    <image class="book-cover" src="{{item.image}}"></image>
-    <view>{{item.title}}</view>
+  <view class="index_swiper">
+    <swiper autoplay="true" indicator-dots circular>
+      <swiper-item wx:for="{{swiperData}}" wx:key="_id" 
+        wx:for-item="item1"
+        wx:for-index="index1"
+        bindtap="goToDetail"
+        data-id="{{item1}}"
+      >
+        <navigator>
+          <image src="{{item1.image}}"></image>
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view wx:for="{{books}}" wx:key="_id" class="book-info" bindtap="goToDetail" data-id="{{item}}">
+    <view class="header">
+      <view>{{item.title}}</view>
+      <view>{{item.rateVal}}</view>
+    </view>
+    <view class="foot">
+      <view class="img">
+        <image class="book-cover" src="{{item.image}}"></image>
+      </view>
+      <view>
+        <view wx:for="{{item.infoDetail}}" wx:key="index">
+          <view class="detail-item" wx:if="{{index < 4}}">{{item == '/'? '' : item}}</view>
+        </view>
+      </view>
+    </view>
   </view>
 </view>

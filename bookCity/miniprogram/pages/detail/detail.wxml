@@ -1,0 +1,41 @@
+<view class="container">
+  <view class="thunb">
+    <image class="back" src="{{bookInfo.image}}" mode="aspectFill"></image>
+    <image class="img" src="{{bookInfo.image}}" mode="aspectFit"></image>
+  </view>
+  <view class="tags">
+    <view class="tag-box" wx:for="{{bookInfo.tags}}" wx:key="title">{{item.title}}</view>
+  </view>
+  <view class="book-detail">
+    <view class="detail-header">
+      <view class="detail-intruduce">内容简介······</view>
+      <view class="book-cllection">收藏</view>
+    </view>
+    <view class="detail-foot">
+      {{bookInfo.summary}}
+    </view>
+  </view>
+  <view class="comment-list">
+    <view class="comment-header">
+      品论区
+    </view>
+    <view class="comment-box" wx:for="{{bookInfo.comments}}" wx:key="index" wx:for-item="comment">
+      <view class="commentatorInfo">
+        <view class="commentator">{{comment.author}}</view>
+        <view class="time">{{comment.date}}</view>
+      </view>
+      <view class="comments-content">{{comment.content}}</view>
+    </view>
+  </view>
+  <view class="showBox" wx:if="{{!showBox}}">
+    <button bindtap="showBox">点击评论</button>
+  </view>
+  <view class="comment" wx:if="{{showBox}}">
+    <!-- <textarea value="{{value}}" placeholder="说点什么" name="" id="" cols="30" rows="10"></textarea> -->
+    <form bindsubmit="bindFormSubmit">
+      <textarea placeholder="说点什么呢" name="textarea"/>
+      <button form-type="submit"> 提交 </button>
+    </form>
+    <!-- <button bindtap="submit">评论</button> -->
+  </view>
+</view>

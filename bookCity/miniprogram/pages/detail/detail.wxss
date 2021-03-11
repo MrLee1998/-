@@ -1,0 +1,84 @@
+.thumb {
+  width: 750rpx;
+  height: 500rpx;
+  overflow: hidden;
+  position: relative;
+}
+.back {
+  filter: blur(15rpx);
+  width: 100%;
+}
+.img {
+  position: absolute;
+  width: 100%;
+  height: 300rpx;
+  left: 0;
+  top: 30rpx;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.tag-box {
+  border: 1rpx solid #777;
+  background-color: #999;
+  margin: 10rpx;
+  padding: 3rpx;
+  border-radius: 5rpx;
+}
+.book-detail {
+  margin: 20rpx;
+}
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  margin: 10rpx 0;
+}
+.detail-intruduce {
+  color: #007722;
+}
+.info {
+  color: white;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: 300rpx;
+  text-align: center;
+}
+.tile {
+  font-size: 20px;
+}
+.comment-header {
+  text-align: center;
+  box-shadow: 10rpx 10rpx 5rpx #888888;
+  background-color: #999;
+  width: 40%;
+  margin-left: 30%;
+}
+.comment-box {
+  margin: 20rpx;
+  background-color: #888;
+  box-shadow: 10rpx 10rpx 5rpx #888888;
+  border-radius: 10rpx;
+}
+.commentatorInfo {
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx;
+}
+.comments-content {
+  padding: 10rpx;
+  font-size: 25rpx;
+  border-top: 1rpx solid #fff;
+}
+.comment {
+  margin: 10px;
+  border: 1px solid #999;
+}
+.comment form {
+  padding: 10rpx;
+}
+.showBox {
+  
+}
